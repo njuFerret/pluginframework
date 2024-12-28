@@ -125,17 +125,44 @@ inline void reverseForeach(const Container &c, const Op &operation) {
     operation(*it);
 }
 
-/////////////////
-// helper code for transform to use back_inserter and thus push_back for everything and insert for QSet<>
-// SetInsertIterator, straight from the standard for insert_iterator
-// just without the additional parameter to insert
+// /////////////////
+// // helper code for transform to use back_inserter and thus push_back for everything and insert for QSet<>
+// // SetInsertIterator, straight from the standard for insert_iterator
+// // just without the additional parameter to insert
+// template <class Container>
+// class SetInsertIterator : public std::iterator<std::output_iterator_tag, void, void, void, void> {
+// protected:
+//   Container *container;
+
+// public:
+//   using container_type = Container;
+//   explicit SetInsertIterator(Container &x) : container(&x) {}
+//   SetInsertIterator<Container> &operator=(const typename Container::value_type &value) {
+//     container->insert(value);
+//     return *this;
+//   }
+//   SetInsertIterator<Container> &operator=(typename Container::value_type &&value) {
+//     container->insert(std::move(value));
+//     return *this;
+//   }
+//   SetInsertIterator<Container> &operator*() { return *this; }
+//   SetInsertIterator<Container> &operator++() { return *this; }
+//   SetInsertIterator<Container> operator++(int) { return *this; }
+// };
+
 template <class Container>
-class SetInsertIterator : public std::iterator<std::output_iterator_tag, void, void, void, void> {
+class SetInsertIterator {
 protected:
   Container *container;
 
 public:
   using container_type = Container;
+  using iterator_category = std::output_iterator_tag;
+  using difference_type = std::ptrdiff_t;        // 如果需要
+  using value_type = void;                       // 如果需要
+  using pointer = void;                          // 如果需要
+  using reference = void;                        // 如果需要
+
   explicit SetInsertIterator(Container &x) : container(&x) {}
   SetInsertIterator<Container> &operator=(const typename Container::value_type &value) {
     container->insert(value);
@@ -150,25 +177,57 @@ public:
   SetInsertIterator<Container> operator++(int) { return *this; }
 };
 
-// for QMap / QHash, inserting a std::pair / QPair
+// // for QMap / QHash, inserting a std::pair / QPair
+// template <class Container>
+// class MapInsertIterator : public std::iterator<std::output_iterator_tag, void, void, void, void> {
+// protected:
+//   Container *container;
+
+// public:
+//   using container_type = Container;
+//   explicit MapInsertIterator(Container &x) : container(&x) {}
+//   MapInsertIterator<Container> &
+//   operator=(const std::pair<const typename Container::key_type, typename Container::mapped_type> &value) {
+//     container->insert(value.first, value.second);
+//     return *this;
+//   }
+//   MapInsertIterator<Container> &
+//   operator=(const QPair<typename Container::key_type, typename Container::mapped_type> &value) {
+//     container->insert(value.first, value.second);
+//     return *this;
+//   }
+//   MapInsertIterator<Container> &operator*() { return *this; }
+//   MapInsertIterator<Container> &operator++() { return *this; }
+//   MapInsertIterator<Container> operator++(int) { return *this; }
+// };
+
 template <class Container>
-class MapInsertIterator : public std::iterator<std::output_iterator_tag, void, void, void, void> {
+class MapInsertIterator {
 protected:
   Container *container;
 
 public:
   using container_type = Container;
+  using iterator_category = std::output_iterator_tag;
+  using difference_type = std::ptrdiff_t;        // 如果需要
+  using value_type = void;                       // 如果需要
+  using pointer = void;                          // 如果需要
+  using reference = void;                        // 如果需要
+
   explicit MapInsertIterator(Container &x) : container(&x) {}
+
   MapInsertIterator<Container> &
   operator=(const std::pair<const typename Container::key_type, typename Container::mapped_type> &value) {
     container->insert(value.first, value.second);
     return *this;
   }
+
   MapInsertIterator<Container> &
   operator=(const QPair<typename Container::key_type, typename Container::mapped_type> &value) {
     container->insert(value.first, value.second);
     return *this;
   }
+
   MapInsertIterator<Container> &operator*() { return *this; }
   MapInsertIterator<Container> &operator++() { return *this; }
   MapInsertIterator<Container> operator++(int) { return *this; }
