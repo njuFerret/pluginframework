@@ -1,0 +1,21 @@
+{
+    "Name" : "Core",
+    "Version" : "1.0.0",
+    "CompatVersion" : "1.0.0",
+    "Required" : true,
+    "HiddenByDefault" : true,
+    "Vendor" : "",
+    "Copyright" : "",
+    "License" : [ 
+	
+    ],
+    "Category" : "Core",
+    "Description" : "The core plugin.",
+    "Url" : "",
+    "Arguments" : [
+
+    ],
+    "Dependencies" : [
+
+    ]
+}
