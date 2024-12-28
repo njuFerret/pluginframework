@@ -5,6 +5,6 @@ SUBDIRS += \
     helloworld \
     test
 
-coreplugin.depends = pluginsystem
+#coreplugin.depends = pluginsystem
 helloworld.depends = pluginsystem
 test.despends = helloworld
