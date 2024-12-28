@@ -16,7 +16,6 @@ SOURCES += \
     navigationwidget.cpp
 
 HEADERS += \
-    algorithm.h \
     commonmode.h \
     core_global.h \
     coreplugin.h \
@@ -30,4 +29,4 @@ INCLUDEPATH += $$PWD/../dist/include
 LIBS += -L$$PWD/../dist/lib
 LIBS += -lPluginSystem
 
-# DESTDIR = $${PWD}/../dist/Plugins
+DESTDIR = $${PWD}/../dist/bin/Plugins

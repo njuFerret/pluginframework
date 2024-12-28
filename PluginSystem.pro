@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 SUBDIRS += \
     pluginsystem \
-    coreplugin \
+    # coreplugin \
     helloworld \
     test
 

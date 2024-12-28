@@ -150,6 +150,30 @@ inline void reverseForeach(const Container &c, const Op &operation) {
 //   SetInsertIterator<Container> operator++(int) { return *this; }
 // };
 
+// // for QMap / QHash, inserting a std::pair / QPair
+// template <class Container>
+// class MapInsertIterator : public std::iterator<std::output_iterator_tag, void, void, void, void> {
+// protected:
+//   Container *container;
+
+// public:
+//   using container_type = Container;
+//   explicit MapInsertIterator(Container &x) : container(&x) {}
+//   MapInsertIterator<Container> &
+//   operator=(const std::pair<const typename Container::key_type, typename Container::mapped_type> &value) {
+//     container->insert(value.first, value.second);
+//     return *this;
+//   }
+//   MapInsertIterator<Container> &
+//   operator=(const QPair<typename Container::key_type, typename Container::mapped_type> &value) {
+//     container->insert(value.first, value.second);
+//     return *this;
+//   }
+//   MapInsertIterator<Container> &operator*() { return *this; }
+//   MapInsertIterator<Container> &operator++() { return *this; }
+//   MapInsertIterator<Container> operator++(int) { return *this; }
+// };
+
 template <class Container>
 class SetInsertIterator {
 protected:
@@ -176,30 +200,6 @@ public:
   SetInsertIterator<Container> &operator++() { return *this; }
   SetInsertIterator<Container> operator++(int) { return *this; }
 };
-
-// // for QMap / QHash, inserting a std::pair / QPair
-// template <class Container>
-// class MapInsertIterator : public std::iterator<std::output_iterator_tag, void, void, void, void> {
-// protected:
-//   Container *container;
-
-// public:
-//   using container_type = Container;
-//   explicit MapInsertIterator(Container &x) : container(&x) {}
-//   MapInsertIterator<Container> &
-//   operator=(const std::pair<const typename Container::key_type, typename Container::mapped_type> &value) {
-//     container->insert(value.first, value.second);
-//     return *this;
-//   }
-//   MapInsertIterator<Container> &
-//   operator=(const QPair<typename Container::key_type, typename Container::mapped_type> &value) {
-//     container->insert(value.first, value.second);
-//     return *this;
-//   }
-//   MapInsertIterator<Container> &operator*() { return *this; }
-//   MapInsertIterator<Container> &operator++() { return *this; }
-//   MapInsertIterator<Container> operator++(int) { return *this; }
-// };
 
 template <class Container>
 class MapInsertIterator {

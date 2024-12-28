@@ -311,7 +311,11 @@ bool PluginSpec::initializeExtensions() {
     hasError = true;
     return false;
   }
+  qDebug() << "TEST" << plugin->metaObject()->className();
+
   plugin->extensionsInitialized();
+
+  qDebug() << "TEST2";
   state = PluginSpec::Running;
   return true;
 }
