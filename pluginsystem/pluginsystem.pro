@@ -22,7 +22,9 @@ HEADERS += \
     pluginsystem_global.h
 
 DESTDIR = $${PWD}/../dist/lib
-
+!exists($$DESTDIR){
+  mkpath($$DESTDIR)
+}
 
 ###################################################################
 # 复制指定文件至目标路径
@@ -43,7 +45,7 @@ win32 {
       header ~= s,/,\\,g
       # copy命令，注意必须有escape_expend
       cmd = $$QMAKE_COPY $$shell_quote($$header) $$shell_quote($$out_path) $$escape_expand(\n\t)
-      QMAKE_PRE_LINK += $$cmd
+      QMAKE_POST_LINK += $$cmd
       # message($$cmd)
    }
 
@@ -55,6 +57,6 @@ win32 {
 
    cmd2 = $$QMAKE_COPY $$shell_quote($${dll}) $$shell_quote($$bin) $$escape_expand(\n\t)
    # message($$cmd2)
-   QMAKE_PRE_LINK += $$cmd2
+   QMAKE_POST_LINK += $$cmd2
 }
 ####################################################################

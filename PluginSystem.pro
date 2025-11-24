@@ -1,10 +1,10 @@
 TEMPLATE = subdirs
 SUBDIRS += \
     pluginsystem \
-    # coreplugin \
+    coreplugin \
     helloworld \
     test
 
-#coreplugin.depends = pluginsystem
+coreplugin.depends = pluginsystem
 helloworld.depends = pluginsystem
-test.despends = helloworld
+test.despends = coreplugin helloworld

@@ -9,3 +9,6 @@ LIBS += -L$$PWD/../dist/lib
 LIBS += -lPluginSystem
 
 DESTDIR = $${PWD}/../dist/bin
+!exists($$DESTDIR){
+  mkpath($$DESTDIR)
+}
