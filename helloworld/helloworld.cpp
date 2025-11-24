@@ -9,7 +9,7 @@ HelloWorldPlugin::~HelloWorldPlugin() {
 
 bool HelloWorldPlugin::initialize(const QStringList &arguments, QString *errorString) {
   w.reset(new QWidget);
-  w->setWindowTitle("尼玛");
+  w->setWindowTitle("尼玛 from HelloWordPlugin");
   w->show();
   return true;
 }
