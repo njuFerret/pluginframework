@@ -6,11 +6,9 @@ DEFINES += HELLOWORLD_LIBRARY
 
 CONFIG += c++17
 
-SOURCES += \
-    helloworld.cpp
+SOURCES +=  helloworld.cpp painttributton.cpp
 
-HEADERS += \
-    helloworld.h
+HEADERS +=  helloworld.h    painttributton.h
 
 INCLUDEPATH += $$PWD/../dist/include
 LIBS += -L$$PWD/../dist/lib

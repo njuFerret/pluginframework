@@ -4,7 +4,7 @@
 #include "pluginsystem_global.h"
 #include <QObject>
 
-class QWidget;
+class PaintTriButton;
 
 class HelloWorldPlugin final : public IPlugin {
   Q_OBJECT
@@ -19,5 +19,5 @@ public:
   void shutdown();
 
 private:
-  QScopedPointer<QWidget> w;
+  QScopedPointer<PaintTriButton> w;
 };
